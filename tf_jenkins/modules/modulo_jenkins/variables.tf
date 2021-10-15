@@ -5,7 +5,12 @@ variable "subnet_cidr" {
 }
 
 variable "ami"{
-    description = "Informe a ami "
+    description = "digite a ami "
+    type = string
+}
+
+variable "ssh_key" {
+    description = "ssh publica"
     type = string
 }
 
@@ -15,7 +20,7 @@ variable "vpc_id" {
 }
 
 variable "name" {
-    description = "Nome do Projeto a ser concatenado ao nome do recurso"
+    description = "Nome do recurso"
     type = string
 }
 
@@ -25,12 +30,10 @@ variable "tags" {
         Exercicio = "Jenkins"
         autor = "Kleberson-Brandao"
     }
-    description = "TAGS para os recursos"
-    type = map(string)
-    
+        
 }
 
-variable "instance" {
+variable "instance_app" {
     description = "Instancia AWS EC2"
     type = string
     default = "t2.micro"

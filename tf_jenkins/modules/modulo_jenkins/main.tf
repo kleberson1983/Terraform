@@ -4,12 +4,12 @@ data "aws_subnet" "subnet_public"{
 
 resource "aws_key_pair" "jenkins-sshkey" {
     key_name = "jenkins-app-key"
-    public_key = file("${path.module}/files/jenkins.pub")
+    public_key = var.ssh_key
 }
 
 resource "aws_instance" "jenkins-app" {
     ami = var.ami
-    instance_type = var.instance
+    instance_type = var.instance_app
     subnet_id = data.aws_subnet.subnet_public.id
     associate_public_ip_address = true
     
