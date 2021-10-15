@@ -1,15 +1,26 @@
-module "slackoapp"{
+module "slackoapp" {
     source = "./modules/slacko-app"
-    vpc_id = "vpc-07e446fe3d5e14d6f"
+    vpc_id = data.aws_vpc.my-vpc.id
+    ami = data.aws_ami.slacko-app.id
+   
     subnet_cidr = "10.0.102.0/24"
+   
     name = "Kleberson"
     tags = {
         curso = "CIA0506"
-        Exercicio = "Slacko-mdules"
+        Exercicio = "Slacko-modules"
         autor = "Kleberson-Brandao"
-    }
+	}
+   
+    ssh_key = "ssh-key"
+    instance_app = "t2.micro"
+    instance_mongo = "t2.small"
 }
 
-output "slackoip" {
-    value =module.slackoapp.slacko-app
-} 
+output "slackip" {
+    value = module.slackoapp.slacko-app
+}
+
+output "mongodb" {
+    value = module.slackoapp.slacko-mongodb
+}
